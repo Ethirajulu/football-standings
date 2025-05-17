@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["Lngs"]
+  "cSpell.words": ["Chennaiyin", "Lngs", "Publicis", "yarnrc"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
