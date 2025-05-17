@@ -14,7 +14,7 @@ export class LeagueController {
     description: 'List of leagues',
     type: [LeagueResponseDto],
   })
-  async getAllLeaguesByCountry(@Query('countryId') countryId: number) {
+  async getAllLeaguesByCountry(@Query('countryId') countryId: string) {
     try {
       return await this.leagueService.getAllLeaguesByCountry(countryId);
     } catch (error) {

@@ -17,7 +17,7 @@ export class TeamController {
     description: 'List of teams',
     type: [TeamResponseDto],
   })
-  async getAllTeamsByLeague(@Query('leagueId') leagueId: number) {
+  async getAllTeamsByLeague(@Query('leagueId') leagueId: string) {
     try {
       return await this.teamService.getAllTeamsByLeague(leagueId);
     } catch (error) {
@@ -41,8 +41,8 @@ export class TeamController {
     type: StandingResponseDto,
   })
   getPositionOfTeam(
-    @Query('leagueId') leagueId: number,
-    @Query('teamId') teamId: number
+    @Query('leagueId') leagueId: string,
+    @Query('teamId') teamId: string
   ) {
     try {
       return this.teamService.getPositionOfTeam(leagueId, teamId);

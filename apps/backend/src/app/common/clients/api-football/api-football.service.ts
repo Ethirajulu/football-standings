@@ -38,7 +38,7 @@ export class ApiFootballService {
     return countries;
   }
 
-  async fetchLeaguesByCountry(countryId: number) {
+  async fetchLeaguesByCountry(countryId: string) {
     const leagues = (await this.httpService.get(
       this.apiHost,
       LeagueResponseDto,
@@ -54,7 +54,7 @@ export class ApiFootballService {
     return leagues;
   }
 
-  async fetchTeamsByLeague(leagueId: number) {
+  async fetchTeamsByLeague(leagueId: string) {
     const teams = (await this.httpService.get(
       this.apiHost,
       TeamResponseDto,
@@ -73,7 +73,7 @@ export class ApiFootballService {
     return teams;
   }
 
-  async fetchLeagueStandings(leagueId: number): Promise<StandingResponseDto[]> {
+  async fetchLeagueStandings(leagueId: string): Promise<StandingResponseDto[]> {
     const standings = (await this.httpService.get(
       this.apiHost,
       StandingResponseDto,
