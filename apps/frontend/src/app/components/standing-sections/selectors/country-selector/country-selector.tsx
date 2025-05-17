@@ -1,4 +1,4 @@
-import { getAllCountries } from '@/apis';
+import { getAllCountries } from '@/lib/apis';
 import { Country } from '@sapient-fc/shared';
 import { Select } from '@sapient-fc/ui-library';
 import { useQuery } from '@tanstack/react-query';

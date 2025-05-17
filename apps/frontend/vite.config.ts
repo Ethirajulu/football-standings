@@ -32,7 +32,11 @@ export default defineConfig(({ mode }) => {
     // },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'), // ✅ maps "@" to "src/"
+        '@': path.resolve(__dirname, 'src'),
+        '@sapient-fc/ui-library': path.resolve(
+          __dirname,
+          '../../libs/ui-library/src'
+        ),
       },
     },
     build: {

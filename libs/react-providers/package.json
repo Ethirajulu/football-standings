@@ -15,6 +15,7 @@
     }
   },
   "nx": {
-    "name": "react-providers"
+    "name": "react-providers",
+    "sourceRoot": "libs/react-providers/src"
   }
 }

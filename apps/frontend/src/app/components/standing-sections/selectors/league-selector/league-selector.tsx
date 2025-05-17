@@ -1,4 +1,4 @@
-import { getFootballData } from '@/apis';
+import { getFootballData } from '@/lib/apis';
 import { Country, League } from '@sapient-fc/shared';
 import { Select } from '@sapient-fc/ui-library';
 import { useQuery } from '@tanstack/react-query';
