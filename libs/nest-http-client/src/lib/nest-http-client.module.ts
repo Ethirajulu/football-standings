@@ -4,7 +4,7 @@ import { NestHttpClientService } from './nest-http-client.service';
 
 @Global()
 @Module({
-  controllers: [HttpModule],
+  imports: [HttpModule],
   providers: [NestHttpClientService],
   exports: [NestHttpClientService],
 })
