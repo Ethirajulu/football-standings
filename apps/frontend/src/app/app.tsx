@@ -2,15 +2,13 @@ import {
   ReactQueryProvider,
   TranslationsProvider,
 } from '@sapient-fc/react-providers';
+import { StandingSections } from './components/standing-sections/standing-sections';
 
 export const App = () => {
   return (
     <TranslationsProvider locale="en" namespaces={['common']}>
       <ReactQueryProvider>
-        <h1>
-          <span> Hello there, </span>
-          Welcome frontend 👋
-        </h1>
+        <StandingSections />
       </ReactQueryProvider>
     </TranslationsProvider>
   );
