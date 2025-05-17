@@ -28,7 +28,7 @@
           "watchDepsName": "watch-deps"
         }
       },
-      "exclude": ["libs/shared/*"]
+      "exclude": ["libs/shared/*", "libs/nest-http-client/*"]
     },
     {
       "plugin": "@nx/webpack/plugin",
@@ -55,7 +55,7 @@
     },
     {
       "plugin": "@nx/js/typescript",
-      "include": ["libs/shared/*"],
+      "include": ["libs/shared/*", "libs/nest-http-client/*"],
       "options": {
         "typecheck": {
           "targetName": "typecheck"

@@ -1,6 +1,6 @@
 export interface Standing {
-  team_id: string;
-  position: string;
+  teamId: string;
+  position: number;
   _links: {
     self: {
       href: string;
