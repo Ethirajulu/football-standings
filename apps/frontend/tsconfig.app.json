@@ -41,9 +41,6 @@
     },
     {
       "path": "../../libs/shared/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/react-providers/tsconfig.lib.json"
     }
   ]
 }

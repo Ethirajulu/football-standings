@@ -22,9 +22,6 @@
       "path": "./apps/frontend"
     },
     {
-      "path": "./libs/react-providers"
-    },
-    {
       "path": "./libs/ui-library"
     }
   ],
