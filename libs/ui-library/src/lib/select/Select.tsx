@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 export type Option = {
   id: string;
@@ -69,49 +69,47 @@ export const Select = ({
         />
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.ul
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
+      {/* always mount list to avoid remounting <img> on open/close */}
+      <motion.ul
+        initial={false}
+        animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+        transition={{ duration: 0.2 }}
+        className={`
+          absolute z-20 mt-2 w-full bg-white
+          border border-gray-300 rounded-md
+          shadow-lg overflow-hidden max-h-60 overflow-y-auto
+          transition-all origin-top
+          ${open ? 'block' : 'hidden'}
+        `}
+      >
+        {optionsWithEmpty?.map((option) => (
+          <motion.li
+            key={option.id}
+            onClick={() => {
+              onChange(option.id);
+              setOpen(false);
+            }}
             className={`
-              absolute z-20 mt-2 w-full bg-white
-              border border-gray-300 rounded-md
-              shadow-lg overflow-hidden max-h-60 overflow-y-auto
+              flex items-center px-4 py-2 text-md
+              cursor-pointer transition-colors
+              ${
+                value === option.id
+                  ? 'bg-indigo-600 text-white'
+                  : 'text-gray-800 hover:bg-gray-100'
+              }
             `}
           >
-            {optionsWithEmpty?.map((option) => (
-              <motion.li
-                key={option.id}
-                onClick={() => {
-                  onChange(option.id);
-                  setOpen(false);
-                }}
-                className={`
-                  flex items-center px-4 py-2 text-md
-                  cursor-pointer transition-colors
-                  ${
-                    value === option.id
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-gray-800 hover:bg-gray-100'
-                  }
-                `}
-              >
-                {option.logo && (
-                  <img
-                    src={option.logo}
-                    alt=""
-                    className="w-5 h-5 mr-2 object-cover"
-                  />
-                )}
-                {option.name}
-              </motion.li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
+            {option.logo && (
+              <img
+                src={option.logo}
+                alt=""
+                className="w-5 h-5 mr-2 object-cover"
+              />
+            )}
+            {option.name}
+          </motion.li>
+        ))}
+      </motion.ul>
     </div>
   );
 };
