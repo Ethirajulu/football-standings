@@ -49,3 +49,5 @@ vitest.config.*.timestamp*
 storybook-static
 
 **/*/.env*
+
+.pnpm-store/**

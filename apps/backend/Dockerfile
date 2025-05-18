@@ -2,7 +2,6 @@ FROM node:22-alpine AS builder
 WORKDIR /workspace
 
 COPY . .
-RUN ls -la
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install --frozen-lockfile -w --shamefully-hoist
 RUN npx nx run backend:build --configuration=production

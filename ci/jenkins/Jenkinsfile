@@ -1,0 +1,50 @@
+pipeline {
+  agent any
+
+  environment {
+    SONARQUBE_URL = 'http://sonarqube:9000'
+    PROJECT_KEY = 'nx-monorepo'
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        echo 'Using mounted code. Skipping checkout.'
+      }
+    }
+
+    stage('Install') {
+      steps {
+        sh 'corepack enable && corepack prepare pnpm@latest --activate'
+        sh 'pnpm install -w --shamefully-hoist'
+      }
+    }
+
+    stage('Lint') {
+      steps {
+        sh 'pnpm nx run-many --target=lint --all'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh 'pnpm nx run-many --target=build --all'
+      }
+    }
+
+    // stage('SonarQube Analysis') {
+    //   environment {
+    //     SONAR_SCANNER_OPTS = "-Dsonar.projectKey=${env.PROJECT_KEY} -Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=admin -Dproject.settings=ci/sonar/sonar-project.properties"
+    //   }
+    //   steps {
+    //     sh 'sonar-scanner $SONAR_SCANNER_OPTS'
+    //   }
+    // }
+    
+    // stage('Deploy') {
+    //   steps {
+    //     sh 'docker compose -f docker-compose.yml up --build -d frontend backend'
+    //   }
+    // }
+  }
+}

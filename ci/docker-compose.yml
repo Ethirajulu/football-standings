@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  jenkins:
+    build:
+      context: ../
+      dockerfile: ./ci/jenkins/Dockerfile
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    volumes:
+      - ..:/var/jenkins_home/workspace/sapient-fc
+      - jenkins_home:/var/jenkins_home
+    working_dir: /var/jenkins_home/workspace
+
+  sonarqube:
+    build:
+      context: ../
+      dockerfile: ./ci/sonar/Dockerfile
+    ports:
+      - '9000:9000'
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+
+  # frontend:
+  #   build:
+  #     context: ../
+  #     dockerfile: ./apps/frontend/Dockerfile
+  #   ports:
+  #     - '80:80'
+
+  # backend:
+  #   build:
+  #     context: ../
+  #     dockerfile: ./apps/backend/Dockerfile
+  #   ports:
+  #     - '3000:3000'
+
+volumes:
+  jenkins_home:

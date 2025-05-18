@@ -1,5 +1,13 @@
 {
-  "cSpell.words": ["Chennaiyin", "Lngs", "Publicis", "VITE", "yarnrc"],
+  "cSpell.words": [
+    "Chennaiyin",
+    "Dsonar",
+    "Lngs",
+    "Publicis",
+    "SONARQUBE",
+    "VITE",
+    "yarnrc"
+  ],
   "files.associations": {
     "*.css": "tailwindcss"
   }
