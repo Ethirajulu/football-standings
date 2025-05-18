@@ -20,7 +20,7 @@ export const PositionDisplay = ({
   });
 
   return (
-    <Card className="w-11/12 h-5/6" data-testid="position-display-card">
+    <Card className="w-11/12 h-5/6" dataTestid="position-display-card">
       <div
         className="flex flex-col gap-10"
         data-testid="position-display-content-container"

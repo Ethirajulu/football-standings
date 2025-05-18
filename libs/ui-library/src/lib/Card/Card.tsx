@@ -6,6 +6,7 @@ export type CardProps = {
   children?: React.ReactNode;
   footer?: React.ReactNode;
   className?: string;
+  dataTestid?: string;
 };
 
 export const Card = ({
@@ -14,12 +15,14 @@ export const Card = ({
   children,
   footer,
   className,
+  dataTestid,
 }: CardProps) => {
   return (
     <div
       className={`bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden ${
         className ?? ''
       }`}
+      data-testid={dataTestid}
     >
       {imageSrc && (
         <img
