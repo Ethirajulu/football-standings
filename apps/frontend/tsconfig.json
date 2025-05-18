@@ -9,6 +9,9 @@
       "path": "../../libs/shared"
     },
     {
+      "path": "../../libs/offline"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {

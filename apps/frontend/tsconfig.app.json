@@ -16,7 +16,8 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@sapient-fc/offline": ["../../libs/offline/src/index.ts"]
     }
   },
   "exclude": [
@@ -41,6 +42,9 @@
     },
     {
       "path": "../../libs/shared/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/offline/tsconfig.lib.json"
     }
   ]
 }

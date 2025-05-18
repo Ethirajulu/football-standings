@@ -1,12 +1,11 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { OfflineQueryProvider, OfflineToggle } from '@sapient-fc/offline';
 import { StandingSections } from './components/standing-sections/standing-sections';
-
-const queryClient = new QueryClient();
 
 export const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <OfflineQueryProvider>
+      <OfflineToggle />
       <StandingSections />
-    </QueryClientProvider>
+    </OfflineQueryProvider>
   );
 };

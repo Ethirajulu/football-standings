@@ -23,6 +23,9 @@
     },
     {
       "path": "./libs/ui-library"
+    },
+    {
+      "path": "./libs/offline"
     }
   ],
   "ts-node": {

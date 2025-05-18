@@ -37,6 +37,10 @@ export default defineConfig(({ mode }) => {
           __dirname,
           '../../libs/ui-library/src'
         ),
+        '@sapient-fc/offline': path.resolve(
+          __dirname,
+          '../../libs/offline/src'
+        ),
       },
     },
     build: {

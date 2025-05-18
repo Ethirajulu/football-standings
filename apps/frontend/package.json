@@ -4,5 +4,8 @@
   "private": true,
   "nx": {
     "name": "frontend"
+  },
+  "dependencies": {
+    "@sapient-fc/offline": "workspace:*"
   }
 }
