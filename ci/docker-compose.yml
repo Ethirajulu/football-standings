@@ -12,6 +12,8 @@ services:
       - ..:/var/jenkins_home/workspace/sapient-fc
       - jenkins_home:/var/jenkins_home
     working_dir: /var/jenkins_home/workspace
+    networks:
+      - sapient-fc-ci-network
 
   sonarqube:
     build:
@@ -21,20 +23,12 @@ services:
       - '9000:9000'
     environment:
       - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
-
-  # frontend:
-  #   build:
-  #     context: ../
-  #     dockerfile: ./apps/frontend/Dockerfile
-  #   ports:
-  #     - '80:80'
-
-  # backend:
-  #   build:
-  #     context: ../
-  #     dockerfile: ./apps/backend/Dockerfile
-  #   ports:
-  #     - '3000:3000'
+    networks:
+      - sapient-fc-ci-network
 
 volumes:
   jenkins_home:
+
+networks:
+  sapient-fc-ci-network:
+    driver: bridge

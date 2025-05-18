@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    ports:
+      - '80:80'
+    environment:
+      - VITE_API_BASE_URL=http://localhost:3000/api
+    networks:
+      - sapient-fc-apps-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - API_FOOTBALL_API_HOST=https://apiv3.apifootball.com
+      - API_FOOTBALL_API_KEY=9bb66184e0c8145384fd2cc0f7b914ada57b4e8fd2e4d6d586adcc27c257a978
+    networks:
+      - sapient-fc-apps-network
+
+networks:
+  sapient-fc-apps-network:
+    driver: bridge

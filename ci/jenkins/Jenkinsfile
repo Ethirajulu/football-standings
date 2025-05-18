@@ -3,7 +3,6 @@ pipeline {
 
   environment {
     SONARQUBE_URL = 'http://sonarqube:9000'
-    PROJECT_KEY = 'nx-monorepo'
   }
 
   stages {
@@ -34,7 +33,7 @@ pipeline {
 
     // stage('SonarQube Analysis') {
     //   environment {
-    //     SONAR_SCANNER_OPTS = "-Dsonar.projectKey=${env.PROJECT_KEY} -Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=admin -Dproject.settings=ci/sonar/sonar-project.properties"
+    //     SONAR_SCANNER_OPTS = "-Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=admin -Dproject.settings=ci/sonar/sonar-project.properties"
     //   }
     //   steps {
     //     sh 'sonar-scanner $SONAR_SCANNER_OPTS'
