@@ -5,8 +5,6 @@ describe('GET /api/countries', () => {
     const response = await axios.get(`/api/countries`);
     expect(response.status).toBe(200);
     expect(response.data).toBeInstanceOf(Array);
-    // Add more assertions here based on the expected response structure
-    // For example, if each country object has an 'id' and 'name' property:
     if (response.data.length > 0) {
       expect(response.data[0]).toHaveProperty('id');
       expect(response.data[0]).toHaveProperty('name');

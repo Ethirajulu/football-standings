@@ -25,7 +25,6 @@ describe('GET /api/teams/position', () => {
       `/api/teams/position?leagueId=101&teamId=3001`
     );
     expect(response.status).toBe(200);
-    // Assuming StandingResponseDto structure
     expect(response.data).toHaveProperty('teamId', '3001');
     expect(response.data).toHaveProperty('position', '1');
     expect(response.data).toHaveProperty('name', 'Mock Team Alpha');
@@ -33,13 +32,11 @@ describe('GET /api/teams/position', () => {
 
   // Add test for team not found in standings if applicable by your mock logic
   it('should return 404 or appropriate error if team standing not found for a league', async () => {
-    // This depends on how your backend and mock handlers are set up for missing standings
-    // For now, assuming the mock for get_standings returns an array, and the backend filters it.
-    // If the backend is expected to throw an error, adjust the test.
     try {
-      await axios.get(`/api/teams/position?leagueId=101&teamId=9999`); // 9999 is a non-existent teamId
+      await axios.get(`/api/teams/position?leagueId=101&teamId=9999`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      expect(error.response.status).toBe(404); // Or whatever your backend returns
+      expect(error.response.status).toBe(404);
     }
   });
 });

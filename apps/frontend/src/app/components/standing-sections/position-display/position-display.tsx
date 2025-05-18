@@ -74,7 +74,7 @@ export const PositionDisplay = ({
                 {team.name}
               </h3>
               <h3 className="text-5xl" data-testid="team-position">
-                League Position: {data?.position}
+                League Position: {data?.position || 'Not Available'}
               </h3>
             </div>
           </div>

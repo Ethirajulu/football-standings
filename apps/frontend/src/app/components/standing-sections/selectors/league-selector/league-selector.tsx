@@ -1,6 +1,6 @@
 import { getFootballData } from '@/lib/apis';
 import { Country, League } from '@sapient-fc/shared';
-import { Select } from '@sapient-fc/ui-library';
+import { Select, Loader } from '@sapient-fc/ui-library';
 import { useQuery } from '@tanstack/react-query';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -15,19 +15,25 @@ export const LeagueSelector = ({
   leagueId,
   setLeague,
 }: LeagueSelectorProps) => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['leagues', country._links.leagues.href],
     queryFn: getFootballData,
+    retry: false,
   });
 
-  return (
-    <Select
-      options={data}
-      value={leagueId}
-      onChange={(value) =>
-        setLeague(data?.find((item: League) => item.id === value))
-      }
-      dataTestid="league-selector-select"
-    />
-  );
+  if (isLoading) return <Loader />;
+
+  if (data)
+    return (
+      <Select
+        options={data}
+        value={leagueId}
+        onChange={(value) =>
+          setLeague(data?.find((item: League) => item.id === value))
+        }
+        dataTestid="league-selector-select"
+      />
+    );
+
+  return <div className="mt-4">No leagues found</div>;
 };
