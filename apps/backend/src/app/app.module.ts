@@ -5,11 +5,14 @@ import { CountryModule } from './modules/country';
 import { LeagueModule } from './modules/league/league.module';
 import { TeamModule } from './modules/team/team.module';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.local', '.env'],
+      ignoreEnvFile: isProduction,
+      envFilePath: isProduction ? undefined : '.env.local',
     }),
     NestHttpClientModule,
     CountryModule,
