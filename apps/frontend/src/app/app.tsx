@@ -1,15 +1,12 @@
-import {
-  ReactQueryProvider,
-  TranslationsProvider,
-} from '@sapient-fc/react-providers';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StandingSections } from './components/standing-sections/standing-sections';
+
+const queryClient = new QueryClient();
 
 export const App = () => {
   return (
-    <TranslationsProvider locale="en" namespaces={['common']}>
-      <ReactQueryProvider>
-        <StandingSections />
-      </ReactQueryProvider>
-    </TranslationsProvider>
+    <QueryClientProvider client={queryClient}>
+      <StandingSections />
+    </QueryClientProvider>
   );
 };
