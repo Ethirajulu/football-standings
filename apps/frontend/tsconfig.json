@@ -9,7 +9,7 @@
       "path": "../../libs/shared"
     },
     {
-      "path": "../../libs/offline"
+      "path": "../../libs/offline-query-provider"
     },
     {
       "path": "./tsconfig.app.json"

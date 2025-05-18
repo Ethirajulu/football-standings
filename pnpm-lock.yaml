@@ -262,15 +262,15 @@ importers:
 
   apps/frontend:
     dependencies:
-      '@sapient-fc/offline':
+      '@sapient-fc/offline-query-provider':
         specifier: workspace:*
-        version: link:../../libs/offline
+        version: link:../../libs/offline-query-provider
 
   apps/frontend-e2e: {}
 
   libs/nest-http-client: {}
 
-  libs/offline:
+  libs/offline-query-provider:
     dependencies:
       '@tanstack/react-query':
         specifier: ^5.0.0

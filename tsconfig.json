@@ -25,7 +25,7 @@
       "path": "./libs/ui-library"
     },
     {
-      "path": "./libs/offline"
+      "path": "./libs/offline-query-provider"
     }
   ],
   "ts-node": {
