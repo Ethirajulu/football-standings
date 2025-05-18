@@ -27,6 +27,7 @@ export const TeamSelector = ({
       onChange={(value) =>
         setTeam(data?.find((item: Team) => item.id === value))
       }
+      dataTestid="team-selector-select"
     />
   );
 };

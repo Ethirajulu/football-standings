@@ -14,6 +14,7 @@ type Props = {
   value: string | undefined;
   onChange: (value: string) => void;
   showEmpty?: boolean;
+  dataTestid?: string;
 };
 
 export const Select = ({
@@ -22,6 +23,7 @@ export const Select = ({
   value,
   onChange,
   showEmpty = false,
+  dataTestid,
 }: Props) => {
   const [open, setOpen] = useState(false);
 
@@ -35,7 +37,10 @@ export const Select = ({
   };
 
   return (
-    <div className="w-full max-w-sm relative text-left">
+    <div
+      className="w-full max-w-sm relative text-left"
+      data-testid={dataTestid}
+    >
       {label && (
         <label className="block mb-1 text-xs font-bold uppercase text-gray-600">
           {label}

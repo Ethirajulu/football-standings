@@ -27,6 +27,7 @@ export const LeagueSelector = ({
       onChange={(value) =>
         setLeague(data?.find((item: League) => item.id === value))
       }
+      dataTestid="league-selector-select"
     />
   );
 };

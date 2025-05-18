@@ -11,8 +11,14 @@ export const StandingSections = () => {
   const [team, setTeam] = useState<Team>();
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <div className="mt-10 w-full flex justify-evenly flex-shrink-0">
+    <div
+      className="flex flex-col items-center justify-center h-full"
+      data-testid="standing-sections-container"
+    >
+      <div
+        className="mt-10 w-full flex justify-evenly flex-shrink-0"
+        data-testid="selectors-container"
+      >
         <CountrySelector countryId={country?.id} setCountry={setCountry} />
         {country && (
           <>
@@ -31,7 +37,10 @@ export const StandingSections = () => {
           </>
         )}
       </div>
-      <div className="flex-1 w-full h-full p-4 flex justify-center mt-10">
+      <div
+        className="flex-1 w-full h-full p-4 flex justify-center mt-10"
+        data-testid="position-display-container"
+      >
         {country && league && team && (
           <PositionDisplay country={country} league={league} team={team} />
         )}

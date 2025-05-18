@@ -25,6 +25,7 @@ export const CountrySelector = ({
       onChange={(value) =>
         setCountry(data?.find((item: Country) => item.id === value))
       }
+      dataTestid="country-selector-select"
     />
   );
 };
