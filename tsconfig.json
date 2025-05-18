@@ -26,6 +26,9 @@
     },
     {
       "path": "./libs/offline-query-provider"
+    },
+    {
+      "path": "./libs/shared"
     }
   ],
   "ts-node": {

@@ -31,7 +31,7 @@
           "watchDepsName": "watch-deps"
         }
       },
-      "exclude": ["libs/shared/*", "libs/nest-http-client/*"]
+      "exclude": ["libs/nest-http-client/*"]
     },
     {
       "plugin": "@nx/webpack/plugin",
@@ -63,7 +63,8 @@
         "typecheck": {
           "targetName": "typecheck"
         }
-      }
+      },
+      "exclude": ["libs/shared/*"]
     },
     {
       "plugin": "@nx/react/router-plugin",
@@ -109,6 +110,11 @@
   "targetDefaults": {
     "test": {
       "dependsOn": ["^build"]
+    },
+    "@nx/js:swc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {
