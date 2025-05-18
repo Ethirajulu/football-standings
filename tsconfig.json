@@ -29,6 +29,9 @@
     },
     {
       "path": "./libs/shared"
+    },
+    {
+      "path": "./libs/shared"
     }
   ],
   "ts-node": {
