@@ -40,12 +40,12 @@ export class TeamController {
     description: 'Position of the team in the league',
     type: StandingResponseDto,
   })
-  getPositionOfTeam(
+  async getPositionOfTeam(
     @Query('leagueId') leagueId: string,
     @Query('teamId') teamId: string
   ) {
     try {
-      return this.teamService.getPositionOfTeam(leagueId, teamId);
+      return await this.teamService.getPositionOfTeam(leagueId, teamId);
     } catch (error) {
       const httpError = error as HttpException;
       Logger.error(
