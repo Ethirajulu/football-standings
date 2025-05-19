@@ -1,46 +1,26 @@
-FROM jenkins/jenkins:lts-jdk21
+FROM jenkins/jenkins:lts-jdk17
 
 USER root
 
-RUN set -eux; \
-    apt-get update; \
-    apt-get install -y \
-      ca-certificates \
-      curl \
-      gnupg \
-      apt-transport-https \
-      unzip \
-      git; \
-    \
-    # Podman
-    apt-get install -y podman; \
-    \
-    # Sonar-Scanner
-    curl -L -o /tmp/sonar-scanner.zip \
-      https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip; \
-    unzip /tmp/sonar-scanner.zip -d /opt; \
-    rm /tmp/sonar-scanner.zip; \
-    ln -s /opt/sonar-scanner-*/bin/sonar-scanner /usr/local/bin/sonar-scanner; \
-    \
-    # Node.js & pnpm
-    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -; \
-    apt-get update; \
-    apt-get install -y nodejs; \
-    corepack enable; \
-    corepack prepare pnpm@latest --activate; \
-    \
-    # Create workspace directory and set ownership for jenkins user
-    mkdir -p /var/jenkins_home/workspace && \
-    chown -R jenkins:jenkins /var/jenkins_home/workspace && \
-    \
-    # cleanup
+# Install dependencies including xz-utils
+RUN apt-get update && apt-get install -y \
+    curl unzip git ca-certificates gnupg xz-utils && \
     rm -rf /var/lib/apt/lists/*
 
-USER jenkins
+# -----------------------
+# Install Node.js 22 (ARM64)
+# -----------------------
+ENV NODE_VERSION=22.0.0
+RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-arm64.tar.xz | tar -xJ -C /usr/local --strip-components=1 \
+    && ln -s /usr/local/bin/node /usr/bin/node \
+    && ln -s /usr/local/bin/npm /usr/bin/npm
 
-# install Jenkins plugins
-RUN jenkins-plugin-cli --plugins \
-      docker-workflow \
-      blueocean \
-      pipeline-utility-steps \
-      sonar
+# -----------------------
+# Install pnpm and sonar-scanner (via npm)
+# -----------------------
+RUN npm install -g pnpm sonar-scanner
+
+# Optional: check versions
+RUN node -v && npm -v && pnpm -v && sonar-scanner --version
+
+USER jenkins

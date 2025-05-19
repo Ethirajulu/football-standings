@@ -14,7 +14,6 @@ pipeline {
 
     stage('Install') {
       steps {
-        sh 'corepack enable && corepack prepare pnpm@latest --activate'
         sh 'pnpm install -w --shamefully-hoist'
       }
     }
