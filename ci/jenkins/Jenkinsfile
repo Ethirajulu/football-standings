@@ -38,7 +38,7 @@ pipeline {
 
     stage('SonarQube Analysis') {
       environment {
-        SONAR_SCANNER_OPTS = "-Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=${SONAR_PASSWORD} -Dproject.settings=ci/sonar/sonar-project.properties"
+        SONAR_SCANNER_OPTS = "-Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=TheGoodBadUgly1993! -Dproject.settings=ci/sonar/sonar-project.properties"
       }
       steps {
         withCredentials([string(credentialsId: 'SONAR_PASSWORD', variable: 'SONAR_PASSWORD')]) {
