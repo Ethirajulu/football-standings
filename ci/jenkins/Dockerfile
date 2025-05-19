@@ -1,10 +1,25 @@
-FROM jenkins/jenkins:lts-jdk17
+FROM jenkins/jenkins:lts-jdk21
 
 USER root
 
 # Install dependencies including xz-utils
 RUN apt-get update && apt-get install -y \
-    curl unzip git ca-certificates gnupg xz-utils && \
+    curl \
+    wget \
+    gnupg \
+    unzip \
+    software-properties-common \
+    ca-certificates \
+    uidmap \
+    slirp4netns \
+    fuse-overlayfs \
+    xz-utils \
+    buildah \
+    git \
+    lsb-release \
+    sudo \
+    podman \
+    pipx && \
     rm -rf /var/lib/apt/lists/*
 
 # -----------------------
@@ -20,7 +35,15 @@ RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-li
 # -----------------------
 RUN npm install -g pnpm sonar-scanner
 
+RUN pipx install podman-compose && \
+    ln -s /root/.local/bin/podman-compose /usr/local/bin/podman-compose
+
 # Optional: check versions
 RUN node -v && npm -v && pnpm -v && sonar-scanner --version
 
+RUN groupadd -g 1001 podman && usermod -aG podman jenkins
+
+RUN podman info || true
+
 USER jenkins
+

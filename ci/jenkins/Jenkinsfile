@@ -46,7 +46,7 @@ pipeline {
     
     stage('Deploy') {
       steps {
-        sh 'podman compose -f docker-compose.yml up --build -d'
+        sh 'podman-compose -f docker-compose.yml up --build -d'
       }
     }
   }
