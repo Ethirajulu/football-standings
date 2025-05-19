@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        echo 'Using mounted code. Skipping checkout.'
+        checkout scm
       }
     }
 
@@ -31,19 +31,25 @@ pipeline {
       }
     }
 
-    // stage('SonarQube Analysis') {
-    //   environment {
-    //     SONAR_SCANNER_OPTS = "-Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=admin -Dproject.settings=ci/sonar/sonar-project.properties"
-    //   }
-    //   steps {
-    //     sh 'sonar-scanner $SONAR_SCANNER_OPTS'
-    //   }
-    // }
+    stag('Test') {
+      steps {
+        sh 'pnpm nx run-many --target=test --all -- coverage'
+      }
+    }
+
+    stage('SonarQube Analysis') {
+      environment {
+        SONAR_SCANNER_OPTS = "-Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=admin -Dsonar.password=admin -Dproject.settings=ci/sonar/sonar-project.properties"
+      }
+      steps {
+        sh 'sonar-scanner $SONAR_SCANNER_OPTS'
+      }
+    }
     
-    // stage('Deploy') {
-    //   steps {
-    //     sh 'docker compose -f docker-compose.yml up --build -d frontend backend'
-    //   }
-    // }
+    stage('Deploy') {
+      steps {
+        sh 'podman compose -f docker-compose.yml up --build -d'
+      }
+    }
   }
 }

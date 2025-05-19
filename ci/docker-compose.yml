@@ -9,8 +9,10 @@ services:
       - '8080:8080'
       - '50000:50000'
     volumes:
-      - ..:/var/jenkins_home/workspace/sapient-fc
       - jenkins_home:/var/jenkins_home
+      - /var/folders/y4/mny5cbr11fgc8989snvcbbxc0000gp/T/podman/podman-machine-default-api.sock:/var/run/podman/podman.sock
+    environment:
+      - PODMAN_HOST=unix:///run/podman/podman.sock
     working_dir: /var/jenkins_home/workspace
     networks:
       - sapient-fc-ci-network

@@ -1,8 +1,7 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-jdk21
 
 USER root
 
-# install OS packages, Docker repo & CLI, Sonar-Scanner, Node.js & pnpm
 RUN set -eux; \
     apt-get update; \
     apt-get install -y \
@@ -11,23 +10,10 @@ RUN set -eux; \
       gnupg \
       apt-transport-https \
       unzip \
-      git \
-      openjdk-17-jdk; \
+      git; \
     \
-    # Docker repo & engine
-    mkdir -p /etc/apt/keyrings; \
-    curl -fsSL https://download.docker.com/linux/debian/gpg \
-      | gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
-      https://download.docker.com/linux/debian \
-      $(awk -F= '/VERSION_CODENAME/{print $2}' /etc/os-release) stable" \
-      > /etc/apt/sources.list.d/docker.list; \
-    apt-get update; \
-    apt-get install -y \
-      docker-ce \
-      docker-ce-cli \
-      containerd.io \
-      docker-compose-plugin; \
+    # Podman
+    apt-get install -y podman; \
     \
     # Sonar-Scanner
     curl -L -o /tmp/sonar-scanner.zip \
@@ -37,7 +23,7 @@ RUN set -eux; \
     ln -s /opt/sonar-scanner-*/bin/sonar-scanner /usr/local/bin/sonar-scanner; \
     \
     # Node.js & pnpm
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -; \
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -; \
     apt-get update; \
     apt-get install -y nodejs; \
     corepack enable; \
