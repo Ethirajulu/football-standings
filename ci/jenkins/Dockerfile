@@ -29,6 +29,10 @@ RUN set -eux; \
     corepack enable; \
     corepack prepare pnpm@latest --activate; \
     \
+    # Create workspace directory and set ownership for jenkins user
+    mkdir -p /var/jenkins_home/workspace && \
+    chown -R jenkins:jenkins /var/jenkins_home/workspace && \
+    \
     # cleanup
     rm -rf /var/lib/apt/lists/*
 
