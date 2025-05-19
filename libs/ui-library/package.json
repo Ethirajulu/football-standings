@@ -15,6 +15,11 @@
   },
   "nx": {
     "name": "ui-library",
-    "sourceRoot": "libs/ui-library/src"
+    "sourceRoot": "libs/ui-library/src",
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    }
   }
 }

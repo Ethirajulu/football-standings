@@ -14,7 +14,12 @@
   },
   "nx": {
     "name": "nest-http-client",
-    "sourceRoot": "libs/nest-http-client/src"
+    "sourceRoot": "libs/nest-http-client/src",
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    }
   },
   "dependencies": {}
 }
