@@ -31,7 +31,7 @@ pipeline {
       }
     }
 
-    stag('Test') {
+    stage('Test') {
       steps {
         sh 'pnpm nx run-many --target=test --all -- coverage'
       }
