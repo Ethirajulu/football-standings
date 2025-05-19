@@ -33,7 +33,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'pnpm nx run-many --target=test --all -- coverage'
+        sh 'pnpm nx run-many --target=test --all --coverage'
       }
     }
 
