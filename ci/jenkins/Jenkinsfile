@@ -37,12 +37,9 @@ pipeline {
     }
 
     stage('SonarQube Analysis') {
-      environment {
-        SONAR_SCANNER_OPTS = "-Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=sqa_72ced8a72a934badba161e820452f15e204c582b -Dproject.settings=ci/sonar/sonar-project.properties"
-      }
       steps {
-        withCredentials([string(credentialsId: 'SONAR_PASSWORD', variable: 'SONAR_PASSWORD')]) {
-          sh 'sonar-scanner $SONAR_SCANNER_OPTS'
+        withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+          sh "sonar-scanner -Dsonar.sources=. -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${SONAR_TOKEN} -Dproject.settings=ci/sonar/sonar-project.properties"
         }
       }
     }
